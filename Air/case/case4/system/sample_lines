@@ -1,0 +1,53 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+sample
+{
+    type            sets;
+    libs            ("libsampling.so");
+
+    writeControl    writeTime;
+
+    interpolationScheme cellPoint;
+
+    setFormat raw;
+
+    sets
+    (
+        inlet
+        {
+            type    lineUniform;
+            axis    distance;
+           start   (-0.00212 0 0.04664);
+            end     (0.00212 0 0.04664);
+            nPoints 100;
+        }
+
+        outlet
+        {
+            type    lineUniform;
+            axis    distance;
+            start   (-0.00212 0 0.76424);
+            end     (0.00212 0 0.76424);
+            nPoints 100;
+        }
+	centerline
+	{
+		type lineUniform;
+		axis distance;
+		start (0 0 0);
+		end (0 0 0.8);	
+		nPoints 100;
+	}
+    );
+
+    fields          (UMean TMean);
+}
+
+
+

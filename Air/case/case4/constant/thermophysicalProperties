@@ -1,0 +1,72 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v3.0+                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/bottomAir";
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       polynomial;//const;
+    thermo          hPolynomial;//hConst;
+    equationOfState perfectGas;//icoPolynomial;//perfectGas;//rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;//sensibleInternalEnergy;
+}
+
+mixture
+{
+/*    specie
+    {
+        molWeight   2;
+    }
+    thermodynamics
+    {
+        Cp          18988.29968;
+        Hf          0;
+    }
+    transport
+    {
+        mu          4.3563E-6;
+        Pr          0.7;
+    }
+*/
+    specie
+    {
+        nMoles      1;
+        molWeight   28.96;
+    }
+    /*equationOfState
+    {
+        //rhoCoeffs<8>    (4.894681184 0 0 0 0 0 0 0);
+        rhoCoeffs<8>    (10.0478953 -0.0237772828 2.59234716E-5 -1.41771448E-8 3.7762668E-12 -3.89535526E-16 0 0);
+    }*/
+    thermodynamics
+    {
+        Hf              0;
+        Sf              0;
+        //CpCoeffs<8>     (15217.0075 0 0 0 0 0 0 0);
+        CpCoeffs<8>     (997.5833646098931 -0.18625836844892912 0.0007364868313502807 -5.290637853786742e-07 1.2285691818353173e-10  0 0 0);
+    }
+    transport
+    {
+        muCoeffs<8>     (3.2332560085295973e-06 6.051928614756761e-08 -3.107834619797083e-11 1.3029658968570167e-14 -2.2809823044256056e-18 0 0 0 );//);//
+        kappaCoeffs<8>  (0.003337502863428734 8.689560708134825e-05 -3.634913461826449e-08 1.5103951694809976e-11 -2.600524228432123e-15 0 0 0 );//
+    }
+
+}
+
+
+// ************************************************************************* //

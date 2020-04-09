@@ -1,0 +1,21 @@
+#!/bin/sh
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+
+python mesh/blockMeshDict.py
+
+runApplication blockMesh
+
+runApplication topoSet -dict system/topoSetDict_heatedWalls
+
+runApplication createPatch -overwrite -dict system/createPatchDict_heatedWalls
+
+runApplication mapFields -consistent ../case3 -sourceTime 0.003
+
+#runApplication decomposePar
+
+#runParallel $(getApplication)
+
+#runApplication reconstructPar
+
+#------------------------------------------------------------------------------

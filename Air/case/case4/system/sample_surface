@@ -1,0 +1,32 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+heatedWalls
+{
+    type            surfaces;
+    libs            ("libsampling.so");
+
+    writeControl    writeTime;
+
+    surfaceFormat   raw;
+    fields          (TMean);
+
+    interpolationScheme cell;
+
+    surfaces
+    (
+        heatedWalls
+        {
+            type         patch;
+            patches ( "heatedWalls" );
+        }
+    );
+}
+
+
+
